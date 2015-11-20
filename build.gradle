@@ -1,11 +1,15 @@
 apply plugin: 'java'
 
 repositories {
-    mavenCentral()
+    maven {
+        // http to work around corporate firewall
+        url "http://repo1.maven.org/maven2"
+    }
 }
 
 dependencies {
     compile 'com.google.guava:guava:19.0-rc2'
+    compile 'org.apache.commons:commons-lang3:3.4'
     testCompile 'junit:junit:4.12'
 }
 
