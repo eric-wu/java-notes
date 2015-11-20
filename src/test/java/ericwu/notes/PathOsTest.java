@@ -1,5 +1,8 @@
 package ericwu.notes;
 
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
 
@@ -11,16 +14,21 @@ import org.junit.Test;
  */
 public class PathOsTest {
 
-    @Test ( expected = InvalidPathException.class )
+    @Test
     public void testGetSpaceAsPathWindows() {
         if ( SystemUtils.IS_OS_WINDOWS ) {
-            Paths.get( " " );
+            try {
+                Paths.get( " " );
+                fail();
+            } catch ( InvalidPathException e ) {
+                assertTrue( "Expected exception", true );
+            }
         }
     }
 
     @Test
     public void testGetSpaceAsPathLinux() {
-        if ( SystemUtils.IS_OS_LINUX) {
+        if ( SystemUtils.IS_OS_LINUX ) {
             Paths.get( " " );
         }
     }
